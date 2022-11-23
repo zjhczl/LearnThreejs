@@ -1,4 +1,5 @@
 #Threejs
+![](./img/0.png)
 
 ## vue 引入 threejs
 

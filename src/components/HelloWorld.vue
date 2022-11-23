@@ -21,6 +21,21 @@ onMounted(()=>{
     }); //材质对象Material
     var mesh = new THREE.Mesh(geometry, material); //网格模型对象Mesh
     scene.add(mesh); //网格模型添加到场景中
+
+
+    var geometry2 = new THREE.SphereGeometry(60, 40, 40);
+    
+    var sphereMaterial=new THREE.MeshPhongMaterial({
+    color:0x0000ff,
+    specular:0x4488ee,
+    shininess:12
+});//材质对象
+
+    var mesh2 = new THREE.Mesh(geometry2, sphereMaterial); //网格模型对象Mesh
+    mesh2.translateX(160); 
+    mesh2.translateZ(-140); 
+    scene.add(mesh2);
+
     /**
      * 光源设置
      */
@@ -49,10 +64,21 @@ onMounted(()=>{
      */
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize(width, height);//设置渲染区域尺寸
-    renderer.setClearColor(0xb9d3ff, 1); //设置背景颜色
+    renderer.setClearColor(0xb9d3ff, 0.5); //设置背景颜色
     document.querySelector(".container").appendChild(renderer.domElement); //body元素中插入canvas对象
+    
+
     //执行渲染操作   指定场景、相机作为参数
-    renderer.render(scene, camera);
+    // renderer.render(scene, camera);
+    //添加动画
+    setInterval(()=>{
+      renderer.render(scene, camera);
+      mesh.rotateY(0.01);
+      // mesh2.rotateY(0.01);
+    },20
+    
+    
+    )
 });
 </script>
 
